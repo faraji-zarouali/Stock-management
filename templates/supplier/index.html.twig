@@ -1,0 +1,118 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Supplier List{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper"> 
+<div class="row">
+    <div class="col-md-6">
+      <h2>Supplier List</h2>
+    </div>
+    <div class="col-md-6 text-right">
+      <button id="add-supplier-button" class="btn btn-success">Add Supplier</button>
+    </div>
+  </div>  
+
+<table id="supplier-datatable" class="display" style="width:100%">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+</table>
+</div>
+
+<!-- Add Supplier Modal -->
+	<div class="modal fade" id="add-supplier-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">New Supplier</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form action="" id="add-supplier-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input class="form-control" type="name" name="name" id="newSupplierName"  required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input class="form-control" type="address" name="address" id="newSupplierAddress"  required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input class="form-control" type="email" name="email" id="newSupplierEmail"  required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input class="form-control" type="phone" name="phone" id="newSupplierPhone"  required>
+                    </div>
+                    <button type="button" class="btn btn-primary" id="add-supplier-btn">ADD</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- edit Supplier Modal -->
+	<div class="modal" id="edit-supplier-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Supplier</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form action="" id="edit-supplier-form">
+                    <div class="form-group">
+		        		<input class="form-control" type="text" id="sId" class="field left" readonly>
+                        <label for="name">Name</label>
+                        <input class="form-control" type="name" name="name" id="editSupplierName"  required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input class="form-control" type="address" name="address" id="editSupplierAddress"  required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input class="form-control" type="email" name="email" id="editSupplierEmail"  required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input class="form-control" type="phone" name="phone" id="editSupplierPhone"  required>
+                    </div>
+                    <button type="button" class="btn btn-primary" id="edit-supplier-btn">Update</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% block javascripts %}
+		{{ parent() }}
+		{{ encore_entry_script_tags('supplier') }}
+{% endblock %}
+{% endblock %}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+            {{ encore_entry_script_tags('test') }}
+          {% endblock %}
+          
+    </head>
+    <body>
+<div class="sidebar">
+    <div class="logo-details">
+        <i class='bx bx-store-alt icon'></i>
+        <div class="logo_name">Stock management</div>
+        <i class='bx bx-menu' id="btn" ></i>
+    </div>
+    <ul class="nav-list">
+      <li>
+      {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <a href="{{ path('app_product_list') }}">
+          <i class='bx bx-grid-alt'></i>
+          <span class="links_name">Product List</span>
+        </a>
+         <span class="tooltip">Product List</span>
+      </li>
+   
+     <li>
+       <a href="{{ path('app_supplier') }}">
+         <i class="fas fa-truck"></i>
+         <span class="links_name">Supplier List</span>
+       </a>
+       <span class="tooltip">Supplier List</span>
+     </li>
+
+     <li>
+       <a href="{{ path('app_category') }}">
+         <i class="fa fa-list-alt" aria-hidden="true"></i>
+         <span class="links_name">Category List</span>
+       </a>
+       <span class="tooltip">Category List</span>
+     </li>
+            {% if is_granted('ROLE_ADMIN') %}
+      <li>
+       <a href="{{ path('app_user_list') }}">
+         <i class='bx bx-user' ></i>
+         <span class="links_name">User List</span>
+       </a>
+       <span class="tooltip">User List</span>
+     </li>
+            {% endif %}
+    <li>
+       <a href="/logout">
+         <i class='bx bx-log-out' ></i>
+         <span class="links_name">Log Out</span>
+       </a>
+       <span class="tooltip">Log Out</span>
+     </li>
+    </ul>
+    {% endif %}
+  </div>
+  <section class="home-section">
+      
+  {% block body %}{% endblock %}
+  </section>
+    </body>
+</html>
