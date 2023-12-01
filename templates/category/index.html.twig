@@ -1,0 +1,109 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Category List{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper"> 
+<div class="row">
+    <div class="col-md-6">
+      <h2>Category List</h2>
+    </div>
+    <div class="col-md-6 text-right">
+      <button id="add-category-button" class="btn btn-success">Add category</button>
+    </div>
+  </div>  
+
+<table id="category-datatable" class="display" style="width:100%">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Code</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+</table>
+</div>
+
+<!-- Add category Modal -->
+	<div class="modal" id="add-category-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">New category</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form action="" id="add-category-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input class="form-control" type="name" name="name" id="newCategoryName"  required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <input class="form-control" type="text" name="description" id="newCategoryDescription"  required>
+                    </div>
+                    <div class="form-group">
+                        <label for="code">code</label>
+                        <input class="form-control" type="text" name="code" id="newCategoryCode"  required>
+                    </div>
+                    <button type="button" class="btn btn-primary" id="add-category-btn">ADD</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- edit Category Modal -->
+	<div class="modal" id="edit-category-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Category</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form action="" id="edit-category-form">
+                    <div class="form-group">
+		        		<input class="form-control" type="text" id="cId" class="field left" readonly>
+                        <label for="name">Name</label>
+                        <input class="form-control" type="text" name="name" id="editCategoryName"  required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">description</label>
+                        <input class="form-control" type="text" name="description" id="editCategorydescription"  required>
+                    </div>
+                    <div class="form-group">
+                        <label for="code">CODE</label>
+                        <input class="form-control" type="text" name="Code" id="editCategoryCode"  required>
+                    </div>
+                    <button type="button" class="btn btn-primary" id="edit-category-btn">Update</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% block javascripts %}
+		{{ parent() }}
+		{{ encore_entry_script_tags('category') }}
+{% endblock %}
+{% endblock %}
