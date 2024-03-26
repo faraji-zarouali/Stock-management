@@ -1,2 +1,121 @@
 @import "~bootstrap";
 @import "~toastr/toastr.scss";
+
+
+* {
+    font-family: "Roboto Condensed";
+    text-transform: uppercase !important;
+    // border-radius: 0 !important;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.swal2-popup {
+font-size: 0.7rem !important;
+}
+
+button:focus {
+outline: none !important;
+box-shadow: none !important;
+}
+
+.swal2-icon.swal2-warning {
+border-radius: 50% !important;
+}
+
+.swal2-icon.swal2-info {
+border-radius: 50% !important;
+}
+
+.swal2-title {
+font-size: 1rem !important;
+}
+
+.wrapper {
+    margin: 1em auto;
+    max-width: 100%;
+    width: 95%;
+}
+
+/* Button styling */
+.buttonDropDownRow {
+    border: none;
+    background-color: transparent;
+}
+
+/* Table styling */
+th,
+td {
+    padding: 2px 15px !important;
+    border-right: 1px solid #d7d7d785 !important;
+    border-bottom: none !important;
+    text-align: center !important;
+    font-size: 11px !important; /* Reduce font size to make text smaller */
+    vertical-align: middle !important;
+}
+
+table.dataTable {
+    border-radius: 5px;
+    width: 100%;
+    border: 1px solid #d7d7d785 !important;
+    color: #656565;
+}
+
+
+/* Table header styling */
+table.dataTable thead {
+    background-color: #f2f2f2;
+}
+
+/* Dropdown menu styling */
+.dropdown-menu {
+    font-size: 13px !important;
+    min-width: 3rem !important;
+    cursor: default;
+    padding: 0px;
+}
+
+/* Search input styling */
+.dataTables_filter{
+    margin-top: 15px;
+    font-size: 12px;
+}
+
+/* Pagination styling */
+.dataTables_paginate {
+    margin-top: 4px;
+}
+
+.paginate_button{
+    margin: 0px 0px 0px 2px !important;
+    padding: 0px 5px !important;
+}
+
+.dataTables_paginate .paginate_button {
+    font-size: 12px;
+}
+
+.dataTables_length {
+    margin-top: 20px;
+}
+
+.dataTables_length select {
+    padding-top: 1px !important;
+    padding-bottom: 1px !important;
+    height: auto !important;
+    font-size: 12px !important;
+}
+
+.dataTables_info,
+.dataTables_length label {
+    font-size: 12px;
+}
+
+/* Processing animation */
+div.dataTables_processing div {
+    display: none;
+}
+
+

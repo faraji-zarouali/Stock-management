@@ -2,68 +2,67 @@
   "entrypoints": {
     "app": {
       "js": [
-        "/build/runtime.js",
-        "/build/vendors-node_modules_jquery_dist_jquery_js.js",
-        "/build/vendors-node_modules_toastr_toastr_js-node_modules_core-js_internals_array-species-create_js--4bb413.js",
-        "/build/vendors-node_modules_core-js_modules_es_symbol_description_js-node_modules_core-js_modules_es-df0961.js",
-        "/build/vendors-node_modules_core-js_modules_es_array_push_js-node_modules_core-js_modules_es_date_to-d548ed.js",
-        "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_bootstrap_dist_js_boo-cbac6d.js",
-        "/build/app.js"
+        "/build/runtime.24c34160.js",
+        "/build/755.287d4878.js",
+        "/build/393.aef96c9f.js",
+        "/build/816.995bb7ee.js",
+        "/build/633.f983ac44.js",
+        "/build/748.0b716808.js",
+        "/build/app.430013c0.js"
       ],
       "css": [
-        "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_bootstrap_dist_js_boo-cbac6d.css",
-        "/build/app.css"
+        "/build/748.f7fe43fa.css",
+        "/build/app.824447ec.css"
       ]
     },
     "userList": {
       "js": [
-        "/build/runtime.js",
-        "/build/vendors-node_modules_jquery_dist_jquery_js.js",
-        "/build/vendors-node_modules_toastr_toastr_js-node_modules_core-js_internals_array-species-create_js--4bb413.js",
-        "/build/vendors-node_modules_core-js_modules_es_array_concat_js-node_modules_core-js_modules_es_array-5cd115.js",
-        "/build/userList.js"
+        "/build/runtime.24c34160.js",
+        "/build/755.287d4878.js",
+        "/build/393.aef96c9f.js",
+        "/build/userList.2943416c.js"
       ]
     },
     "productList": {
       "js": [
-        "/build/runtime.js",
-        "/build/vendors-node_modules_jquery_dist_jquery_js.js",
-        "/build/vendors-node_modules_toastr_toastr_js-node_modules_core-js_internals_array-species-create_js--4bb413.js",
-        "/build/vendors-node_modules_core-js_modules_es_symbol_description_js-node_modules_core-js_modules_es-df0961.js",
-        "/build/vendors-node_modules_core-js_modules_es_array_push_js-node_modules_core-js_modules_es_date_to-d548ed.js",
-        "/build/productList.js"
+        "/build/runtime.24c34160.js",
+        "/build/755.287d4878.js",
+        "/build/393.aef96c9f.js",
+        "/build/816.995bb7ee.js",
+        "/build/633.f983ac44.js",
+        "/build/productList.e967f152.js"
       ]
     },
     "test": {
       "js": [
-        "/build/runtime.js",
-        "/build/vendors-node_modules_jquery_dist_jquery_js.js",
-        "/build/test.js"
+        "/build/runtime.24c34160.js",
+        "/build/755.287d4878.js",
+        "/build/test.fd762595.js"
       ]
     },
     "supplier": {
       "js": [
-        "/build/runtime.js",
-        "/build/vendors-node_modules_jquery_dist_jquery_js.js",
-        "/build/vendors-node_modules_toastr_toastr_js-node_modules_core-js_internals_array-species-create_js--4bb413.js",
-        "/build/supplier.js"
+        "/build/runtime.24c34160.js",
+        "/build/755.287d4878.js",
+        "/build/393.aef96c9f.js",
+        "/build/supplier.1aa20e22.js"
       ]
     },
     "category": {
       "js": [
-        "/build/runtime.js",
-        "/build/vendors-node_modules_jquery_dist_jquery_js.js",
-        "/build/vendors-node_modules_toastr_toastr_js-node_modules_core-js_internals_array-species-create_js--4bb413.js",
-        "/build/vendors-node_modules_core-js_modules_es_symbol_description_js-node_modules_core-js_modules_es-df0961.js",
-        "/build/category.js"
+        "/build/runtime.24c34160.js",
+        "/build/755.287d4878.js",
+        "/build/393.aef96c9f.js",
+        "/build/816.995bb7ee.js",
+        "/build/category.cb106585.js"
       ]
     },
     "access_denied": {
       "js": [
-        "/build/runtime.js"
+        "/build/runtime.24c34160.js"
       ],
       "css": [
-        "/build/access_denied.css"
+        "/build/access_denied.126ddf2f.css"
       ]
     }
   }

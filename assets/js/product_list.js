@@ -5,11 +5,11 @@ $(document).ready(function() {
     var productDataTable = $('#product-datatable').DataTable({
         processing: true,
         serverSide: true,
-        pageLength: 8,
+        pagingTag: 'button',
         lengthMenu: [
-            [8, 25, 50, -1],
-            [8, 25, 50, 'All']
-        ],
+            [15, 25, 50, 100],
+            [15, 25, 50, 100],
+          ],
         autoWidth: false,
         ajax: {
             url: Routing.generate('app_product_get_list'),
@@ -24,7 +24,11 @@ $(document).ready(function() {
             {
                 data: 'status',
                 render: function (data, type, row) {
-                    return data ? '<input type="checkbox" class="product-checkbox" disabled>' :'<input type="checkbox" class="product-checkbox" data-product-id="' + row.id + '">';
+                    let checkboxItem =  data ? '<input type="checkbox" class="product-checkbox" data-product-id="' + row.id + '">':'<input type="checkbox" class="product-checkbox" disabled>' ;
+                    // Return final HTML string
+                    return `<div style="padding-top: 3px;">
+                                ${checkboxItem}
+                            </div>`;
                 },
                 orderable: false,
             },
@@ -49,23 +53,48 @@ $(document).ready(function() {
             {
                 data: 'id',
                 render: function(data, type, row) {
+                    // Create dropdown button
+                    let dropdownButton = `<button class="buttonDropDownRow" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: default;">
+                    <i class="fa fa-ellipsis-h"></i>
+                        </button>`;
+
+                    // Create dropdown menu items
+                    let updateItem = `<a class="dropdown-item edit-button" data-product-id="${data}" >Update</a>`; // Adjust width here
+                    let extractPDFItem = `<a class="dropdown-item extract-pdf-button" data-product-id="${data}" >Extract PDF</a>`; // Adjust width here
+                    
+                    // Combine all elements
+                    let dropdownMenu = `<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            ${updateItem}
+                            ${extractPDFItem}
+                        </div>`;
+
+                    // Return final HTML string
                     return `<div class="dropdown-table">
-                      <button class="buttonDropDownRow" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-ellipsis-h"></i>
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item edit-button" data-product-id="${data}">Update</a>
-                        <a class="dropdown-item extract-pdf-button" data-product-id="${data}">Extract PDF</a>
-                    </div>
-                </div>`;
-                }
-            },
+                    ${dropdownButton}
+                    ${dropdownMenu}
+                    </div>`;
+                },
+                orderable: false,
+            }
+            
         ],
+        pagingType: 'simple_numbers',
+        language: {
+            loadingRecords: '&nbsp;',
+            processing: "<span style='text-align: center; margin-top: 10px;'><i class='fa fa-spinner fa-spin fa-lg' style='font-size: 2em;'></i><br>Processing...</span>",
+            // paginate: {
+            //     next: '&raquo;',
+            //     previous: '&laquo;'
+            // },
+            searchPlaceholder: "Search",
+            search: "",
+        },
+        // dom: 'lrtip',
         autoWidth: false
     });
-
-    $('body').on('click', '#add-product-button', function() {  
-        $('#add-product-modal').modal('show');     
+    $('body').on('click', '#add-product-button', function() {   
+        $('#add-product-modal').modal('show'); 
+             
     });
 
     $('#add-product-modal').on('click', '#add-product-btn', function() {
@@ -92,9 +121,11 @@ $(document).ready(function() {
                 if (xhr.status === 200) {
                     productDataTable.ajax.reload(null, false);
                     $('#add-product-modal').modal('hide'); 
-                    $("#newProductName").val();
+                    $("#newProductName").val("");
                     $("#newProductPrice").val("");
                     $("#newProductQuantity").val("");
+                    $("#newProductSupplier").val("");
+                    $("#newProductCategory").val("");
                     // Show success pop-up
                     toastr["success"]("New Product Added successfully", "Success")
                 } else {
@@ -140,30 +171,53 @@ $(document).ready(function() {
 
     
     changeStatusBtn.on('click', function() {
-        var selectedProductIds = [];
+        swalWithBootstrapButtons
+        .fire({
+          showClass: {
+            popup: "animatedSwal flipInX faster",
+          },
+          position: "top",
+          title: "Confirmation ?",
+          text: "do u really want to desactivate this product?",
+          type: "warning",
+          showCancelButton: true,
+          showCloseButton: true,
+          confirmButtonClass: "btn btn-success",
+          confirmButtonText: "<i class='fa fa-check'></i> Yes !",
+          cancelButtonText: "<i class='fa fa-times'></i> No !",
+        })
+        .then((isConfirmed) => {
+          if (isConfirmed.value) {
+            var selectedProductIds = [];
 
-        // Get the IDs of selected products
-        $('.product-checkbox:checked', productDataTable.rows().nodes()).each(function() {
-            selectedProductIds.push($(this).data('product-id'));
-        });
-        $.ajax({
-            url:  Routing.generate('app_update_product_status'),
-            type: 'POST',
-            contentType: 'application/json;charset=utf-8',
-            data: JSON.stringify({ productIds: selectedProductIds }),
-            success: function(response) {
-                productDataTable.ajax.reload(null, false);
-                $('#select_all').prop('checked', false);
-                changeStatusBtn.hide();
-                    // Show success pop-up
-                toastr["success"]("Status changed successfully", "Success")
-                console.log(response);
-            },
-            error: function(error) {
-                // Handle errors
-                console.error(error);
-            }
-        });
+            // Get the IDs of selected products
+            $('.product-checkbox:checked', productDataTable.rows().nodes()).each(function() {
+                selectedProductIds.push($(this).data('product-id'));
+            });
+            $.ajax({
+                url:  Routing.generate('app_update_product_status'),
+                type: 'POST',
+                contentType: 'application/json;charset=utf-8',
+                data: JSON.stringify({ productIds: selectedProductIds }),
+                success: function(response) {
+                    productDataTable.ajax.reload(null, false);
+                    $('#select_all').prop('checked', false);
+                    changeStatusBtn.hide();
+                        // Show success pop-up
+                    toastr["success"]("Status changed successfully", "Success")
+                    console.log(response);
+                },
+                error: function(error) {
+                    // Handle errors
+                    console.error(error);
+                }
+            });
+        
+          } else {
+            toastr.info("Demande annulée !");
+          }
+        });      
+        
     });
 
     $('body').on('click', '.edit-button', function() {
@@ -242,5 +296,7 @@ $(document).ready(function() {
         window.open(url, '_blank');
         
     });
+
+
 
 });

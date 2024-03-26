@@ -20,6 +20,26 @@ use Symfony\Component\HttpFoundation\Request;
 class UserController extends AbstractController
 {
 
+    
+    // #[Route(path: '/', name: 'app_hom')]
+    // public function logout(ManagerRegistry $doctrine , UserPasswordHasherInterface $userPasswordHasher)
+    // {
+    //     $entity_manager = $doctrine->getManager();
+
+    //     $user = new User();
+
+    //     $user->setEmail("admin");
+
+    //     $user->setRoles(["ROLE_ADMIN"]);
+    //     $hashPassword = $userPasswordHasher->hashPassword($user, '123456');
+
+    //     $user->setPassword($hashPassword);
+
+    //     $entity_manager->persist($user);
+    //     $entity_manager->flush();
+    // }
+
+    
     #[Route(path: '/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
@@ -40,7 +60,7 @@ class UserController extends AbstractController
     #[Route(path: '/logout', name: 'app_logout')]
     public function logout()
     {
-    
+            
     }
 
     #[Route('/user/list', options: ['expose'=>true], name: 'app_user_list')]

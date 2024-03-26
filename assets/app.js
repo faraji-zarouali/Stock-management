@@ -4,6 +4,9 @@
  * We recommend including the built version of this JavaScript file
  * (and its CSS file) in your base layout (base.html.twig).
  */
+import "@fontsource/roboto-condensed"; // Defaults to weight 400
+import "@fontsource/roboto-condensed/400.css"; // Specify weight
+import "@fontsource/roboto-condensed/400-italic.css"; // Specify weight and style
 
 // any CSS you import will output into a single css file (app.css in this case)
 import '../assets/styles/app.scss';
@@ -16,12 +19,28 @@ const $ = require('jquery');
 
 global.$ = global.jQuery = $;
 
+
 const routes = require('../public/js/fos_js_routes.json');
 import Routing from '../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.js';
 const routing = Routing.setRoutingData(routes);
 global.Routing = Routing
 // import 'datatables.net-dt/css/jquery.dataTables.css';
 // import 'datatables.net-responsive-dt/css/responsive.dataTables.css'; // Add this line for responsive features
+
+const swal = require('sweetalert2');
+const swalWithBootstrapButtons = swal.mixin({
+    customClass: {
+        confirmButton: 'btn btn-white btn-xs sySweetStyle',
+        cancelButton: 'btn btn-warning btn-xs sySweetStyle'
+    },
+    buttonsStyling: false
+})
+
+global.Swal = swal;
+global.swalWithBootstrapButtons = swalWithBootstrapButtons;
+
+
+
 import toastr from 'toastr';
 
 toastr.options = {
