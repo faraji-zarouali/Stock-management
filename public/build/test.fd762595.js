@@ -1,0 +1,1 @@
+(self.webpackChunk=self.webpackChunk||[]).push([[43],{1545:(n,e,c)=>{var a=c(9755);a(document).ready((function(){var n=a(".sidebar"),e=a("#btn"),c=a(".bx-search");e.on("click",(function(){n.toggleClass("open")})),c.on("click",(function(){n.toggleClass("open")}))}))}},n=>{n.O(0,[755],(()=>{return e=1545,n(n.s=e);var e}));n.O()}]);

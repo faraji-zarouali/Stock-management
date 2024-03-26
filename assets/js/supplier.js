@@ -39,7 +39,7 @@ $(document).ready(function() {
     });
 
         $('body').on('click', '#add-supplier-button', function() { 
-            $('.sidebar').addClass('hide-sidebar');
+            $('#add-supplier-modal').modal('show'); 
     });
 
     $('#add-supplier-modal').on('click', '#add-supplier-btn', function() {
