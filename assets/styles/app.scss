@@ -8,7 +8,6 @@
     // border-radius: 0 !important;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 
@@ -48,20 +47,49 @@ font-size: 1rem !important;
 /* Table styling */
 th,
 td {
-    padding: 2px 15px !important;
+    padding: 3px 15px !important;
     border-right: 1px solid #d7d7d785 !important;
     border-bottom: none !important;
     text-align: center !important;
-    font-size: 11px !important; /* Reduce font size to make text smaller */
+    font-size: 13px !important;
     vertical-align: middle !important;
 }
 
+th input,
+td input,
+th i,
+td i {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
 table.dataTable {
-    border-radius: 5px;
+    border-radius: 0px !important;
     width: 100%;
     border: 1px solid #d7d7d785 !important;
+    border-top: none !important;
+    border-right: none !important;
     color: #656565;
 }
+
+/* Style the checkbox checkbox*/
+.dataTables_wrapper input[type="checkbox"] {
+    transform: scale(1.2);
+    accent-color: #0075ff;
+}
+
+#select_all.indeterminate:before {
+    content: '-';
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 40px;
+    color: #767676;
+    border-radius: 5px !important;
+}
+
 
 
 /* Table header styling */
@@ -71,7 +99,7 @@ table.dataTable thead {
 
 /* Dropdown menu styling */
 .dropdown-menu {
-    font-size: 13px !important;
+    font-size: 14px !important;
     min-width: 3rem !important;
     cursor: default;
     padding: 0px;
@@ -80,7 +108,12 @@ table.dataTable thead {
 /* Search input styling */
 .dataTables_filter{
     margin-top: 15px;
-    font-size: 12px;
+    font-size: 13px;
+}
+
+.dataTables_filter input[type="search"] {
+    height: 28px;
+    width: 180px;
 }
 
 /* Pagination styling */
@@ -94,7 +127,7 @@ table.dataTable thead {
 }
 
 .dataTables_paginate .paginate_button {
-    font-size: 12px;
+    font-size: 13px;
 }
 
 .dataTables_length {
@@ -105,12 +138,12 @@ table.dataTable thead {
     padding-top: 1px !important;
     padding-bottom: 1px !important;
     height: auto !important;
-    font-size: 12px !important;
+    font-size: 13px !important;
 }
 
 .dataTables_info,
 .dataTables_length label {
-    font-size: 12px;
+    font-size: 13px;
 }
 
 /* Processing animation */
@@ -119,3 +152,6 @@ div.dataTables_processing div {
 }
 
 
+.selected-row {
+    background-color: rgba(1, 151, 251, 0.168627451) !important; 
+}

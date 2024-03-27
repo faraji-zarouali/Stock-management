@@ -24,11 +24,9 @@ $(document).ready(function() {
             {
                 data: 'status',
                 render: function (data, type, row) {
-                    let checkboxItem =  data ? '<input type="checkbox" class="product-checkbox" data-product-id="' + row.id + '">':'<input type="checkbox" class="product-checkbox" disabled>' ;
+                    let checkboxItem =  data ? '<input type="checkbox" class="product-checkbox" data-product-id="' + row.id + '">':'<input type="checkbox" class="product-checkbox" disabled checked>' ;
                     // Return final HTML string
-                    return `<div style="padding-top: 3px;">
-                                ${checkboxItem}
-                            </div>`;
+                    return checkboxItem;
                 },
                 orderable: false,
             },
@@ -45,8 +43,8 @@ $(document).ready(function() {
             {
                 data: 'status',
                 render: function(data) {
-                    var iconClass = data ? 'fas fa-check text-success' : 'fas fa-times text-danger';
-                    return '<i class="' + iconClass + '"></i>';
+                    var iconClass = data ? 'far fa-check-circle text-success' : 'far fa-times-circle text-danger';
+                    return '<i class="' + iconClass + '" style="font-size: 16px;"></i>';
                 },
                 orderable: false,
             },
@@ -81,11 +79,7 @@ $(document).ready(function() {
         pagingType: 'simple_numbers',
         language: {
             loadingRecords: '&nbsp;',
-            processing: "<span style='text-align: center; margin-top: 10px;'><i class='fa fa-spinner fa-spin fa-lg' style='font-size: 2em;'></i><br>Processing...</span>",
-            // paginate: {
-            //     next: '&raquo;',
-            //     previous: '&laquo;'
-            // },
+            processing: "<span><i class='fa fa-spinner fa-spin fa-lg'></i><br>Processing...</span>",
             searchPlaceholder: "Search",
             search: "",
         },
@@ -146,30 +140,116 @@ $(document).ready(function() {
     });
 
 
-            // Handle "Check All" functionality
+   // Handle click on table rows
+    $('#product-datatable tbody').on('click', 'tr', function(event) {
+        // Find the checkbox within the row
+        var checkbox = $(this).find('.product-checkbox');
+
+        // Check if the click event originated from the checkbox
+        if ($(event.target).is(':checkbox')) {
+            // Change background color based on checkbox state
+            if (checkbox.prop('checked')) {
+                $(this).addClass('selected-row');
+            } else {
+                $(this).removeClass('selected-row');
+            }
+        } else {
+            // Check if the checkbox is disabled
+            if (!checkbox.prop('disabled')) {
+                // Toggle checkbox state
+                checkbox.prop('checked', !checkbox.prop('checked'));
+
+                // Change background color based on checkbox state
+                if (checkbox.prop('checked')) {
+                    $(this).addClass('selected-row');
+                } else {
+                    $(this).removeClass('selected-row');
+                }
+            }
+        }
+
+        // Show the button if at least one checkbox is checked
+        if ($('.product-checkbox:checked', productDataTable.rows().nodes()).length > 0) {
+            changeStatusBtn.show();
+        } else {
+            changeStatusBtn.hide();
+        }
+
+        // Update "indeterminate" class on select_all checkbox
+        updateSelectAllCheckbox();
+    });
+
+    // Function to update "select all" checkbox state based on selected checkboxes
+    function updateSelectAllCheckbox() {
+        var checkedCheckboxes = $('.product-checkbox:enabled:checked').length;
+        var totalCheckboxes = $('.product-checkbox:enabled').length;
+        
+        // Check if all checkboxes are checked and update the "Select All" checkbox
+        $('#select_all').prop('checked', checkedCheckboxes === totalCheckboxes);
+        
+        // Update "indeterminate" class on select_all checkbox
+        $('#select_all').toggleClass('indeterminate', checkedCheckboxes > 0 && checkedCheckboxes < totalCheckboxes);
+
+        // Show the button if at least one checkbox is checked
+        changeStatusBtn.toggle(checkedCheckboxes > 0);
+    }
+
+
+
+    // Handle "Check All" functionality and row background color change
     $('#select_all').on('change', function() {
         var isChecked = $(this).prop('checked');
         
-        // Check or uncheck all (excluding disabled checkboxes)
+        // Toggle checkbox state for all checkboxes
         $('.product-checkbox:enabled', productDataTable.rows().nodes()).prop('checked', isChecked);
+        
+        // Change background color of enabled rows based on checkbox state
+        if (isChecked) {
+            $('#product-datatable tbody tr:has(:checkbox:enabled)').addClass('selected-row');
+        } else {
+            $('#product-datatable tbody tr:has(:checkbox:enabled)').removeClass('selected-row');
+        }
 
-        // Show the button if at least one checkbox is checked
+        // Show or hide button based on checked checkboxes
         changeStatusBtn.toggle($('.product-checkbox:checked', productDataTable.rows().nodes()).length > 0);
+
+        // Show changeStatusBtn when Select All checkbox is clicked
+        if (isChecked) {
+            changeStatusBtn.show();
+        } else {
+            // Hide changeStatusBtn if no checkboxes are checked
+            changeStatusBtn.hide();
+        }
+
+        // Remove the class 'indeterminate' from the desired element
+        $('#select_all').removeClass('indeterminate');
     });
+
+
+
 
     // Handle individual checkbox changes
     $('#product-datatable tbody').on('change', '.product-checkbox', function() {
+        var checkedCheckboxes = $('.product-checkbox:enabled:checked').length;
+        var totalCheckboxes = $('.product-checkbox:enabled').length;
+
         // Check if all selectable checkboxes are checked and update the "Check All" checkbox
-        $('#select_all').prop('checked', $('.product-checkbox:enabled:checked').length === $('.product-checkbox:enabled').length);
+        $('#select_all').prop('checked', checkedCheckboxes === totalCheckboxes);
+
+        // If some but not all checkboxes are checked, add the "indeterminate" class to the "Select All" checkbox
+        if (checkedCheckboxes > 0 && checkedCheckboxes < totalCheckboxes) {
+            $('#select_all').addClass('indeterminate');
+        } else {
+            $('#select_all').removeClass('indeterminate');
+        }
 
         // Show the button if at least one checkbox is checked
-        changeStatusBtn.toggle($('.product-checkbox:checked', productDataTable.rows().nodes()).length > 0);
+        changeStatusBtn.toggle(checkedCheckboxes > 0);
     });
 
     // Show the button if at least one checkbox is checked
     changeStatusBtn.toggle($('.product-checkbox:checked', productDataTable.rows().nodes()).length > 0);
 
-    
     changeStatusBtn.on('click', function() {
         swalWithBootstrapButtons
         .fire({
@@ -205,7 +285,8 @@ $(document).ready(function() {
                     changeStatusBtn.hide();
                         // Show success pop-up
                     toastr["success"]("Status changed successfully", "Success")
-                    console.log(response);
+                    $('#select_all').removeClass('indeterminate');
+                    
                 },
                 error: function(error) {
                     // Handle errors
