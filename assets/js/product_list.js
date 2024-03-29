@@ -57,8 +57,8 @@ $(document).ready(function() {
                         </button>`;
 
                     // Create dropdown menu items
-                    let updateItem = `<a class="dropdown-item edit-button" data-product-id="${data}" >Update</a>`; // Adjust width here
-                    let extractPDFItem = `<a class="dropdown-item extract-pdf-button" data-product-id="${data}" >Extract PDF</a>`; // Adjust width here
+                    let updateItem = `<a class="dropdown-item edit-button" data-product-id="${data}" ><i class="fas fa-edit"></i> Update</a>`; // Adjust width here
+                    let extractPDFItem = `<a class="dropdown-item extract-pdf-button" data-product-id="${data}" ><i class="fas fa-file-pdf"></i> Extract PDF</a>`; // Adjust width here
                     
                     // Combine all elements
                     let dropdownMenu = `<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -78,8 +78,9 @@ $(document).ready(function() {
         ],
         pagingType: 'simple_numbers',
         language: {
+            // url: "//cdn.datatables.net/plug-ins/1.10.24/i18n/French.json",
             loadingRecords: '&nbsp;',
-            processing: "<span><i class='fa fa-spinner fa-spin fa-lg'></i><br>Processing...</span>",
+            processing: "<span><i class='fa fa-spinner fa-spin fa-lg' style='font-size: 28px;'></i><br>Processing...</span>",
             searchPlaceholder: "Search",
             search: "",
         },
@@ -140,8 +141,23 @@ $(document).ready(function() {
     });
 
 
-   // Handle click on table rows
+    // Handle click on table rows
     $('#product-datatable tbody').on('click', 'tr', function(event) {
+        // Find the last td element
+        var lastTd = $(this).find('td:last');
+
+        // Get the index of the clicked td element
+        var clickedIndex = $(event.target).closest('td').index();
+
+        // Get the total number of td elements in the row
+        var totalTds = $(this).find('td').length;
+
+        // Check if the clicked element is the last td
+        if (clickedIndex === totalTds - 1) {
+            // Do nothing if clicked on the last td
+            return;
+        }
+
         // Find the checkbox within the row
         var checkbox = $(this).find('.product-checkbox');
 
@@ -179,6 +195,7 @@ $(document).ready(function() {
         updateSelectAllCheckbox();
     });
 
+
     // Function to update "select all" checkbox state based on selected checkboxes
     function updateSelectAllCheckbox() {
         var checkedCheckboxes = $('.product-checkbox:enabled:checked').length;
@@ -193,7 +210,6 @@ $(document).ready(function() {
         // Show the button if at least one checkbox is checked
         changeStatusBtn.toggle(checkedCheckboxes > 0);
     }
-
 
 
     // Handle "Check All" functionality and row background color change
@@ -224,8 +240,6 @@ $(document).ready(function() {
         // Remove the class 'indeterminate' from the desired element
         $('#select_all').removeClass('indeterminate');
     });
-
-
 
 
     // Handle individual checkbox changes
@@ -286,7 +300,7 @@ $(document).ready(function() {
                         // Show success pop-up
                     toastr["success"]("Status changed successfully", "Success")
                     $('#select_all').removeClass('indeterminate');
-                    
+
                 },
                 error: function(error) {
                     // Handle errors
