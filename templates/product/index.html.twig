@@ -10,8 +10,8 @@
     </div>
     <div class="col-md-6 text-right">
         <button type="button" class="btn btn-primary" id="change-status-btn">Change Status</button>
-        <a href="{{path('app_product_export_excel')}}"<button type="button" class="btn btn-secondary" id="exportButton">export</button></a>
-        <button id="add-product-button" class="btn btn-success">Add Product</button>
+        <a href="{{path('app_product_export_excel')}}"<button type="button" class="btn btn-secondary" id="exportButton"><i class="fas fa-file-excel"></i> export</button></a>
+        <button id="add-product-button" class="btn btn-success"><i class="fas fa-plus"></i> Add Product</button>
     </div>
 </div>
     <table id="product-datatable" class="table table-striped">
@@ -34,29 +34,29 @@
 
 <!-- Add Product Modal -->
 <div id="add-product-modal" class="modal fade" data-backdrop="true">
-    <div class="modal-dialog modal-right" style="width: 520px;">
-        <div class="modal-content h-100 no-radius">
+    <div class="modal-dialog modal-right" style="width:40%;">
+        <div class="modal-content h-100 no-radius" >
             <div class="modal-header">
-                <div class="modal-title text-md">Add Product</div>
+                <h6 class="modal-title text-capitalize">Add Product</h6>
                 <button class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
                 <div class="container">
                             <form id="add-product-form">
                                 <div class="form-group">
-                                    <label for="productName">Product Name</label>
+                                    <label for="productName" class="text-capitalize">Product Name</label>
                                     <input class="form-control" type="text" name="productName" id="newProductName" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="productPrice">Product Price</label>
+                                    <label for="productPrice" class="text-capitalize">Product Price</label>
                                     <input class="form-control" type="number" name="productPrice" id="newProductPrice" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="productQuantity">Product Quantity</label>
+                                    <label for="productQuantity" class="text-capitalize">Product Quantity</label>
                                     <input class="form-control" type="number" name="productQuantity" id="newProductQuantity" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="supplier">Supplier</label>
+                                    <label for="supplier" class="text-capitalize">Supplier</label>
                                     <select id="newProductSupplier" class="form-control">
                                             <option value="" selected disabled>Select Supplier</option>
                                         {% for supplier in suppliers %}
@@ -65,7 +65,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="category">Category</label>
+                                    <label for="category" class="text-capitalize">Category</label>
                                     <select id="newProductCategory" class="form-control">
                                             <option value="" selected disabled>Select Category</option>
                                         {% for category in categories %}
@@ -76,7 +76,9 @@
                             </form>
                 </div>
             </div>
-            <div class="modal-footer"><button type="button" class="btn btn-primary" data-dismiss="modal" id="add-product-btn">ADD</button></div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="add-product-btn" ><i class="fa-solid fa-floppy-disk" style="font-size: 14px;"></i> save</button>
+                </div>
         </div>
     </div>
 </div>
@@ -86,10 +88,10 @@
 
 <!-- Edit Product Modal -->
 <div id="edit-product-modal" class="modal fade" data-backdrop="true">
-    <div class="modal-dialog modal-right" style="width: 520px;">
+    <div class="modal-dialog modal-left" style="width:40%;">
         <div class="modal-content h-100 no-radius">
             <div class="modal-header">
-                <div class="modal-title text-md">Update Product</div>
+                <h6 class="modal-title text-capitalize">Update Product</h6>
                 <button class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
@@ -129,7 +131,7 @@
                             </form>
                 </div>
             </div>
-            <div class="modal-footer"><button type="button" class="btn btn-primary" data-dismiss="modal" id="btnUpdateSubmit">UPDATE</button></div>
+            <div class="modal-footer"><button type="button" class="btn btn-primary" id="btnUpdateSubmit"><i class="fas fa-edit"></i> UPDATE</button></div>
         </div>
     </div>
 </div>
