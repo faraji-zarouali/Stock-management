@@ -32,6 +32,7 @@
         "jquery": "^3.7.1",
         "sass": "^1.69.5",
         "sass-loader": "^13.3.2",
+        "select2": "^4.1.0-rc.0",
         "sweetalert": "^2.1.2",
         "sweetalert2": "^11.10.6",
         "toastr": "^2.1.4"

@@ -37,7 +37,7 @@
     <div class="modal-dialog modal-right" style="width:40%;">
         <div class="modal-content h-100 no-radius" >
             <div class="modal-header">
-                <h6 class="modal-title text-capitalize">Add Product</h6>
+                <h6 class="modal-title">Add Product</h6>
                 <button class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
@@ -56,18 +56,18 @@
                                     <input class="form-control" type="number" name="productQuantity" id="newProductQuantity" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="supplier" class="text-capitalize">Supplier</label>
-                                    <select id="newProductSupplier" class="form-control">
-                                            <option value="" selected disabled>Select Supplier</option>
+                                    <label for="supplier" class="text-capitalize">Supplier</label><br>
+                                    <select class="form-control" aria-label="Default select example" id="newProductSupplier" style="width:100%">
+                                        <option value="" selected >Select Supplier</option>
                                         {% for supplier in suppliers %}
                                             <option value="{{ supplier.id }}">{{ supplier.name }}</option>
                                         {% endfor %}
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="category" class="text-capitalize">Category</label>
-                                    <select id="newProductCategory" class="form-control">
-                                            <option value="" selected disabled>Select Category</option>
+                                    <label for="category" class="text-capitalize">Category</label><br>
+                                    <select class="form-control" aria-label="Default select example" id="newProductCategory">
+                                        <option value="" selected >Select Category</option>
                                         {% for category in categories %}
                                             <option value="{{ category.id }}">{{ category.name }}</option>
                                         {% endfor %}
@@ -91,38 +91,39 @@
     <div class="modal-dialog modal-left" style="width:40%;">
         <div class="modal-content h-100 no-radius">
             <div class="modal-header">
-                <h6 class="modal-title text-capitalize">Update Product</h6>
+                <h6 class="modal-title">Update Product</h6>
                 <button class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
                 <div class="container">
                             <form id="edit-product-form">
+                                <label for="productId" class="text-capitalize"> </label>
                                 <input class="form-control" type="text" id="pId" class="field left" readonly>
                                 <div class="form-group">
-                                    <label for="productName">Product Name</label>
+                                    <label for="productName" class="text-capitalize">Product Name</label>
                                     <input class="form-control" type="text" name="productName" id="editProductName" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="productPrice">Product Price</label>
+                                    <label for="productPrice" class="text-capitalize">Product Price</label>
                                     <input class="form-control" type="number" name="productPrice" id="editProductPrice" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="productQuantity">Product Quantity</label>
+                                    <label for="productQuantity" class="text-capitalize">Product Quantity</label>
                                     <input class="form-control" type="number" name="productQuantity" id="editProductQuantity" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="supplier">Supplier</label>
-                                    <select id="editProductSupplier" class="form-control">
-                                            <option value="" selected disabled>Select Supplier</option>
+                                    <label for="supplier" class="text-capitalize">Supplier</label><br>
+                                    <select class="form-control" aria-label="Default select example" id="editProductSupplier">
+                                        <option value="" selected >Select Supplier</option>
                                         {% for supplier in suppliers %}
                                             <option value="{{ supplier.id }}">{{ supplier.name }}</option>
                                         {% endfor %}
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="category">Category</label>
-                                    <select id="editProductCategory" class="form-control">
-                                            <option value="" selected disabled>Select Category</option>
+                                    <label for="category" class="text-capitalize">Category</label><br>
+                                    <select class="form-control" aria-label="Default select example" id="editProductCategory">
+                                        <option value="" selected >Select Category</option>
                                         {% for category in categories %}
                                             <option value="{{ category.id }}">{{ category.name }}</option>
                                         {% endfor %}

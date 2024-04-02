@@ -325,8 +325,8 @@ $(document).ready(function() {
                         $('#editProductName').val(dataResult.product.name);
                         $('#editProductPrice').val(dataResult.product.price);
                         $('#editProductQuantity').val(dataResult.product.quantity);
-                        $('#editProductSupplier').val(dataResult.product.supplier);
-                        $('#editProductCategory').val(dataResult.product.category);
+                        $('#editProductSupplier').val(dataResult.product.supplier).trigger("change");;
+                        $('#editProductCategory').val(dataResult.product.category).trigger("change");;
 
                         $('#edit-product-modal').modal('show');
                     }
@@ -391,7 +391,4 @@ $(document).ready(function() {
         window.open(url, '_blank');
         
     });
-
-
-
 });
