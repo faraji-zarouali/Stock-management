@@ -62,6 +62,11 @@ toastr.options = {
     }
 
 global.toastr = toastr
+
+
+require('select2')
+require('select2/dist/css/select2.min.css')
+
 // import 'toastr/build/toastr.css';
 import 'bootstrap/dist/js/bootstrap.bundle';
 // @import '~bootstrap/dist/css/bootstrap.min';
@@ -72,3 +77,6 @@ import 'datatables.net';
 import 'datatables.net-dt/css/jquery.dataTables.css';
 
 
+$(document).ready(function() {
+    $("select").select2();
+});

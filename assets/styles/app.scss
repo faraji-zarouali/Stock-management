@@ -193,6 +193,25 @@ div.dataTables_processing div {
 // }
 
 
+.select2-container {
+    width: 100% !important;
+    height: calc(1.5em + 0.75rem + 2px) !important;
+    font-size: 14px !important;
+    margin-right: 0 !important;
+    margin-top: 0 !important;
+  }
+  
+.select2-selection {
+height: calc(1.5em + 0.75rem + 2px) !important;
+padding: 0.2rem 0.4rem !important;
+color: lightgray !important;
+}
+
+.select2-results__options {
+font-size: 14px !important;
+}
+
+
 
 .selected-row {
     background-color: rgba(1, 151, 251, 0.168627451) !important; 
